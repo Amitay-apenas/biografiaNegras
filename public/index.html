@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vozes Negras</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Cabeçalho -->
+    <header>
+      <div class="logo">Vozes Negras</div>
+      <nav>
+        <ul>
+          <li><a href="#destaques">Destaques</a></li>
+          <li><a href="#biografias">Biografias</a></li>
+          <li><a href="#sugestoes">Sugestões</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Destaque principal -->
+    <section id="destaques" class="hero">
+      <div class="hero-text">
+        <h1>Celebrando a História Negra</h1>
+        <p>
+          Conheça personalidades negras que marcaram a história e inspiram o
+          futuro.
+        </p>
+      </div>
+    </section>
+    <section id="biografias" class="bio-section">
+      <h2>Biografias em Destaque</h2>
+      <div class="bio-grid">
+        <div class="bio-card">
+          <img src="./img/zumbi.png" alt="Zumbi dos Palmares" />
+          <h3>Zumbi dos Palmares</h3>
+          <p>
+            Líder do Quilombo dos Palmares e símbolo da resistência negra no
+            Brasil.
+          </p>
+        </div>
+        <div class="bio-card">
+          <img src="./img/rosa-parks.png" alt="Rosa Parks" />
+          <h3>Rosa Parks</h3>
+          <p>
+            Ativista do movimento dos direitos civis nos EUA, símbolo de
+            coragem.
+          </p>
+        </div>
+        <div class="bio-card">
+          <img src="img/marielle.png" alt="Marielle Franco" />
+          <h3>Marielle Franco</h3>
+          <p>Sociológa, política e defensora dos direitos humanos no Brasil.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="sugestoes" class="form-section">
+      <h2>Sugira uma Biografia</h2>
+      <form id="form-sugestao">
+        <input type="text" id="nome" placeholder="Nome da pessoa" required />
+        <textarea
+          id="biografia"
+          placeholder="Conte um pouco sobre a trajetória dela..."
+          required
+        ></textarea>
+        <input type="text" id="cidade" placeholder="Cidade/Estado" required />
+        <button type="submit">Enviar Sugestão</button>
+      </form>
+    </section>
+
+    <section id="sugestoes-recebidas">
+      <h2>Sugestões da Comunidade</h2>
+      <div id="lista-sugestoes" class="bio-grid">
+        <p style="text-align: center">Carregando sugestões...</p>
+      </div>
+    </section>
+
+    <script>
+      const form = document.getElementById("form-sugestao");
+      const listaSugestoes = document.getElementById("lista-sugestoes");
+
+      async function fetchSugestoes() {
+        try {
+          const response = await fetch("http://localhost:3000/api/sugestoes");
+          const sugestoes = await response.json();
+          listaSugestoes.innerHTML = "";
+
+          if (sugestoes.length === 0) {
+            listaSugestoes.innerHTML =
+              '<p style="text-align: center;">Nenhuma sugestão enviada ainda.</p>';
+            return;
+          }
+
+          sugestoes.forEach((sugestao) => {
+            const card = document.createElement("div");
+            card.className = "bio-card";
+            card.innerHTML = `
+              <h3>${sugestao.nome}</h3>
+              <p><i>Cidade: ${sugestao.cidade}</i></p>
+              <p>${sugestao.biografia}</p>
+            `;
+            listaSugestoes.appendChild(card);
+          });
+        } catch (error) {
+          console.error("Erro ao buscar sugestões:", error);
+          listaSugestoes.innerHTML =
+            '<p style="text-align: center; color: red;">Erro ao carregar sugestões.</p>';
+        }
+      }
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const nome = document.getElementById("nome").value;
+        const biografia = document.getElementById("biografia").value;
+        const cidade = document.getElementById("cidade").value;
+
+        try {
+          const response = await fetch("http://localhost:3000/api/sugestoes", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ nome, biografia, cidade }),
+          });
+          const data = await response.json();
+
+          form.reset();
+          fetchSugestoes();
+        } catch (error) {
+          console.error("Erro ao enviar sugestão:", error);
+          alert("Erro ao enviar sugestão. Tente novamente.");
+        }
+      });
+
+      document.addEventListener("DOMContentLoaded", fetchSugestoes);
+    </script>
+
+    <footer>
+      <p>© 2025 Vozes Negras — Celebrando a Representatividade</p>
+    </footer>
+  </body>
+</html>

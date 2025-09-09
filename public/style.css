@@ -5,6 +5,10 @@
   box-sizing: border-box;
 }
 
+html{
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: Arial, sans-serif;
   background-color: #f5f1eb;
@@ -26,6 +30,48 @@ header .logo {
   font-size: 1.5rem;
   font-weight: bold;
   color: #f4c542;
+}
+
+#menuButton{
+  padding: 5px;
+  background-color: #1a1a1a;
+  border: none;
+  font-size: 20px;
+
+  
+  transition-property: all;
+  transition-duration: 1s;
+}
+#menuButton:hover{
+  cursor: pointer;
+  color:  #f4c542;
+}
+
+#menuButton img{
+  max-width: 25px;
+}
+
+.menuNav{
+  
+  transition-property: all;
+  transition-duration: 0.3s;
+  position:absolute;
+  margin-left: 75%;
+  clip-path: circle(0%);
+}
+
+.active{
+  visibility: visible;
+  clip-path: circle(100%);
+
+  transition-property: all;
+  transition-delay: 0.5s;
+  transition-duration: 1s;
+}
+
+.moved{
+  transform: translateX(-350px);
+  transition: all 1s;
 }
 
 header nav ul {

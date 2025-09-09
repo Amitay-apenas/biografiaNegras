@@ -3,22 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vozes Negras</title>
+    <title>Enciclopédia Negra</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <!-- Cabeçalho -->
     <header>
-      <div class="logo">Vozes Negras</div>
-      <nav>
+      <div class="logo">Enciclopédia Negra</div>
+
+      <button id="menuButton">
+        <img src="./img/menu.png" alt="menu button">
+      </button>
+      <nav class="menuNav">
         <ul>
           <li><a href="#destaques">Destaques</a></li>
           <li><a href="#biografias">Biografias</a></li>
           <li><a href="#sugestoes">Sugestões</a></li>
         </ul>
       </nav>
-    </header>
-
+    </header>         
+    
     <!-- Destaque principal -->
     <section id="destaques" class="hero">
       <div class="hero-text">
@@ -77,6 +81,7 @@
       </div>
     </section>
 
+    <script src="./script.js"></script>
     <script>
       const form = document.getElementById("form-sugestao");
       const listaSugestoes = document.getElementById("lista-sugestoes");

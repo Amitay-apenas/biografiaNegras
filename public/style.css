@@ -11,17 +11,17 @@ html{
 
 body {
   font-family: Arial, sans-serif;
-  background-color: #f5f1eb;
+  background-color: #d0ad8b;
   color: #2b2b2b;
   line-height: 1.6;
 }
 
 /* Cabeçalho */
 header {
-  background-color: #1a1a1a;
+  background-color: #473829;
   color: #f4f4f4;
   display: flex;
-  justify-content: space-between;
+  justify-content: end;
   align-items: center;
   padding: 1rem 2rem;
 }
@@ -34,7 +34,7 @@ header .logo {
 
 #menuButton{
   padding: 5px;
-  background-color: #1a1a1a;
+  background-color: #473829;
   border: none;
   font-size: 20px;
 
@@ -92,8 +92,8 @@ header nav a:hover {
 
 /* Hero */
 .hero {
-  background: linear-gradient(to right, #3b2f2f, #1a1a1a);
-  color: white;
+  background-color: #473829;
+  color: #dbba9b;
   padding: 5rem 2rem;
   text-align: center;
 }

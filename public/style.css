@@ -94,12 +94,12 @@ header nav a:hover {
 .hero {
   background-color: #473829;
   color: #dbba9b;
-  padding: 5rem 2rem;
-  text-align: center;
+  padding: 5rem;
+  text-align: justify;
 }
 
 .hero h1 {
-  font-size: 2.5rem;
+  font-size: 5rem;
   margin-bottom: 1rem;
 }
 
@@ -156,7 +156,7 @@ header nav a:hover {
 
 /* Formulário */
 .form-section {
-  background-color: #3b2f2f;
+  background-color: #473829;
   color: white;
   padding: 2rem;
   text-align: center;
@@ -214,4 +214,14 @@ footer {
     font-size: 2rem;
     margin-bottom: 2rem;
     color: #3b2f2f;
+}
+
+#biografias p{
+  text-align: justify;
+  margin-bottom: 200px;
+}
+
+
+footer img{
+  max-width: 80px;
 }
